@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | Sistem Pakar Kesehatan</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+<h2><i class="fas fa-heartbeat"></i> E-Health</h2>
+
+<ul>
+
+<li class="active">
+<a href="index.html">
+<i class="fas fa-home"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="pasien.html">
+<i class="fas fa-user"></i>
+Data Pasien
+</a>
+</li>
+
+<li>
+<a href="diagnosa.html">
+<i class="fas fa-stethoscope"></i>
+Diagnosa
+</a>
+</li>
+
+<li>
+<a href="penyakit.html">
+<i class="fas fa-notes-medical"></i>
+Data Penyakit
+</a>
+</li>
+
+<li>
+<a href="riwayat.html">
+<i class="fas fa-history"></i>
+Riwayat
+</a>
+</li>
+
+<li>
+<a href="tentang.html">
+<i class="fas fa-info-circle"></i>
+Tentang
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="header">
+
+<h1><i class="fas fa-hospital"></i> Dashboard Sistem Pakar Kesehatan</h1>
+
+</div>
+
+<!-- ================= CARD ================= -->
+
+<div class="cards">
+
+<div class="card">
+<i class="fas fa-users fa-3x"></i>
+
+<h3>Data Pasien</h3>
+
+<p id="jumlahPasien">0</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-stethoscope fa-3x"></i>
+
+<h3>Diagnosa</h3>
+
+<p id="jumlahDiagnosa">0</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-virus fa-3x"></i>
+
+<h3>Penyakit</h3>
+
+<p>10</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-notes-medical fa-3x"></i>
+
+<h3>Gejala</h3>
+
+<p>20</p>
+
+</div>
+
+</div>
+
+<!-- ================= SELAMAT DATANG ================= -->
+
+<div class="welcome">
+
+<h2>Selamat Datang 👋</h2>
+
+<p>
+
+Aplikasi ini merupakan Sistem Pakar Diagnosa Penyakit
+menggunakan metode <b>Backward Chaining</b>.
+
+Silakan pilih menu di sebelah kiri untuk mulai
+mengelola data pasien, melakukan diagnosa,
+melihat data penyakit, serta melihat riwayat diagnosa.
+
+</p>
+
+<br>
+
+<h3>Fitur Aplikasi</h3>
+
+<ul>
+
+<li>✔ Dashboard Statistik</li>
+
+<li>✔ Data Pasien</li>
+
+<li>✔ Diagnosa Backward Chaining</li>
+
+<li>✔ Data Penyakit</li>
+
+<li>✔ Riwayat Diagnosa</li>
+
+<li>✔ Penyimpanan Local Storage</li>
+
+<li>✔ Responsive</li>
+
+</ul>
+
+</div>
+
+<footer>
+
+Copyright © 2026
+
+Sistem Pakar Kesehatan
+
+|
+
+Backward Chaining
+
+|
+
+Muhammad Jefri
+
+</footer>
+
+</div>
+
+<script>
+
+let pasien =
+JSON.parse(localStorage.getItem("pasien")) || [];
+
+document.getElementById("jumlahPasien").innerHTML =
+pasien.length;
+
+let diagnosa =
+JSON.parse(localStorage.getItem("diagnosa")) || [];
+
+document.getElementById("jumlahDiagnosa").innerHTML =
+diagnosa.length;
+
+</script>
+
+</body>
+
+</html>
