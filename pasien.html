@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Data Pasien</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+<h2><i class="fas fa-heartbeat"></i> E-Health</h2>
+
+<ul>
+
+<li>
+<a href="index.html">
+<i class="fas fa-home"></i>
+Dashboard
+</a>
+</li>
+
+<li class="active">
+<a href="pasien.html">
+<i class="fas fa-user"></i>
+Data Pasien
+</a>
+</li>
+
+<li>
+<a href="diagnosa.html">
+<i class="fas fa-stethoscope"></i>
+Diagnosa
+</a>
+</li>
+
+<li>
+<a href="penyakit.html">
+<i class="fas fa-book-medical"></i>
+Data Penyakit
+</a>
+</li>
+
+<li>
+<a href="riwayat.html">
+<i class="fas fa-history"></i>
+Riwayat
+</a>
+</li>
+
+<li>
+<a href="tentang.html">
+<i class="fas fa-info-circle"></i>
+Tentang
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="header">
+
+<h1>
+
+<i class="fas fa-user"></i>
+
+Data Pasien
+
+</h1>
+
+</div>
+
+<!-- ================= FORM ================= -->
+
+<form id="formPasien">
+
+<label>ID Pasien</label>
+
+<input
+type="text"
+id="id"
+placeholder="Masukkan ID Pasien">
+
+<label>Nama Pasien</label>
+
+<input
+type="text"
+id="nama"
+placeholder="Masukkan Nama Pasien">
+
+<label>Umur</label>
+
+<input
+type="number"
+id="umur"
+placeholder="Masukkan Umur">
+
+<label>Jenis Kelamin</label>
+
+<select id="jk">
+
+<option value="">Pilih Jenis Kelamin</option>
+
+<option>Laki-laki</option>
+
+<option>Perempuan</option>
+
+</select>
+
+<label>Alamat</label>
+
+<textarea
+id="alamat"
+placeholder="Masukkan Alamat"></textarea>
+
+<button
+type="button"
+id="btnSimpan"
+onclick="simpanPasien()">
+
+<i class="fas fa-save"></i>
+
+Simpan Data
+
+</button>
+
+<button
+type="reset">
+
+Reset
+
+</button>
+
+</form>
+
+<!-- ================= PENCARIAN ================= -->
+
+<h2 style="margin-top:30px;">
+
+Daftar Pasien
+
+</h2>
+
+<input
+
+type="text"
+
+id="cari"
+
+placeholder="Cari Nama Pasien..."
+
+onkeyup="cariPasien()">
+
+<!-- ================= TABEL ================= -->
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>No</th>
+
+<th>ID</th>
+
+<th>Nama</th>
+
+<th>Umur</th>
+
+<th>JK</th>
+
+<th>Alamat</th>
+
+<th>Aksi</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tabelPasien">
+
+</tbody>
+
+</table>
+
+<br>
+
+<button onclick="hapusSemua()">
+
+<i class="fas fa-trash"></i>
+
+Hapus Semua Data
+
+</button>
+
+<footer>
+
+Copyright © 2026
+
+|
+
+Sistem Pakar Kesehatan
+
+|
+
+Backward Chaining
+
+|
+
+Muhammad Jefri
+
+</footer>
+
+</div>
+
+<script>
+
+// ==============================
+// DATA PASIEN
+// ==============================
+
+let pasien = JSON.parse(localStorage.getItem("pasien")) || [];
+
+let editIndex = -1;
+
+buatID();
+
+tampilPasien();
+
+
+// ==============================
+// MEMBUAT ID OTOMATIS
+// ==============================
+
+function buatID(){
+
+let nomor = pasien.length + 1;
+
+document.getElementById("id").value =
+"P" + nomor.toString().padStart(3,"0");
+
+}
+
+
+// ==============================
+// SIMPAN / UPDATE
+// ==============================
+
+function simpanPasien(){
+
+let id = document.getElementById("id").value;
+
+let nama = document.getElementById("nama").value;
+
+let umur = document.getElementById("umur").value;
+
+let jk = document.getElementById("jk").value;
+
+let alamat = document.getElementById("alamat").value;
+
+
+if(nama=="" || umur=="" || jk=="" || alamat==""){
+
+alert("Silakan lengkapi semua data!");
+
+return;
+
+}
+
+
+// TAMBAH DATA
+
+if(editIndex==-1){
+
+pasien.push({
+
+id:id,
+
+nama:nama,
+
+umur:umur,
+
+jk:jk,
+
+alamat:alamat
+
+});
+
+}
+
+// UPDATE DATA
+
+else{
+
+pasien[editIndex]={
+
+id:id,
+
+nama:nama,
+
+umur:umur,
+
+jk:jk,
+
+alamat:alamat
+
+};
+
+editIndex=-1;
+
+document.getElementById("btnSimpan").innerHTML=
+
+'<i class="fas fa-save"></i> Simpan Data';
+
+}
+
+
+// SIMPAN LOCAL STORAGE
+
+localStorage.setItem("pasien",
+
+JSON.stringify(pasien));
+
+
+// RESET FORM
+
+document.getElementById("formPasien").reset();
+
+buatID();
+
+tampilPasien();
+
+}
+
+// ==============================
+// TAMPILKAN DATA PASIEN
+// ==============================
+
+function tampilPasien(keyword=""){
+
+let isi="";
+
+let no=1;
+
+pasien.forEach((p,index)=>{
+
+if(p.nama.toLowerCase().includes(keyword.toLowerCase())){
+
+isi+=`
+
+<tr>
+
+<td>${no++}</td>
+
+<td>${p.id}</td>
+
+<td>${p.nama}</td>
+
+<td>${p.umur}</td>
+
+<td>${p.jk}</td>
+
+<td>${p.alamat}</td>
+
+<td>
+
+<button
+onclick="editPasien(${index})"
+style="background:#ffc107;color:black;margin-right:5px;">
+
+<i class="fas fa-edit"></i>
+
+Edit
+
+</button>
+
+<button
+onclick="hapusPasien(${index})"
+style="background:#dc3545;color:white;">
+
+<i class="fas fa-trash"></i>
+
+Hapus
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}
+
+});
+
+document.getElementById("tabelPasien").innerHTML=isi;
+
+}
+
+
+
+// ==============================
+// EDIT DATA
+// ==============================
+
+function editPasien(index){
+
+document.getElementById("id").value=pasien[index].id;
+
+document.getElementById("nama").value=pasien[index].nama;
+
+document.getElementById("umur").value=pasien[index].umur;
+
+document.getElementById("jk").value=pasien[index].jk;
+
+document.getElementById("alamat").value=pasien[index].alamat;
+
+editIndex=index;
+
+document.getElementById("btnSimpan").innerHTML=
+
+'<i class="fas fa-pen"></i> Update Data';
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+
+
+// ==============================
+// HAPUS DATA
+// ==============================
+
+function hapusPasien(index){
+
+if(confirm("Yakin ingin menghapus data pasien?")){
+
+pasien.splice(index,1);
+
+localStorage.setItem("pasien",JSON.stringify(pasien));
+
+buatID();
+
+tampilPasien();
+
+}
+
+}
+
+
+
+// ==============================
+// CARI PASIEN
+// ==============================
+
+function cariPasien(){
+
+let keyword=document.getElementById("cari").value;
+
+tampilPasien(keyword);
+
+}
+
+
+
+// ==============================
+// HAPUS SEMUA DATA
+// ==============================
+
+function hapusSemua(){
+
+if(confirm("Apakah Anda yakin ingin menghapus semua data pasien?")){
+
+pasien=[];
+
+localStorage.removeItem("pasien");
+
+document.getElementById("formPasien").reset();
+
+editIndex=-1;
+
+buatID();
+
+tampilPasien();
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

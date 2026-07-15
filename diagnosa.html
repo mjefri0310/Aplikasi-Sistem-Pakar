@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Diagnosa Penyakit</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+<h2><i class="fas fa-heartbeat"></i> E-Health</h2>
+
+<ul>
+
+<li>
+<a href="index.html">
+<i class="fas fa-home"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="pasien.html">
+<i class="fas fa-user"></i>
+Data Pasien
+</a>
+</li>
+
+<li class="active">
+<a href="diagnosa.html">
+<i class="fas fa-stethoscope"></i>
+Diagnosa
+</a>
+</li>
+
+<li>
+<a href="penyakit.html">
+<i class="fas fa-notes-medical"></i>
+Data Penyakit
+</a>
+</li>
+
+<li>
+<a href="riwayat.html">
+<i class="fas fa-history"></i>
+Riwayat
+</a>
+</li>
+
+<li>
+<a href="tentang.html">
+<i class="fas fa-info-circle"></i>
+Tentang
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="header">
+
+<h1>
+<i class="fas fa-stethoscope"></i>
+Diagnosa Penyakit
+</h1>
+
+</div>
+
+<form>
+
+<label>Nama Pasien</label>
+
+<input
+type="text"
+id="namaPasien"
+placeholder="Masukkan Nama Pasien">
+
+<h2>Pilih Gejala</h2>
+
+<div class="gejala-container">
+
+<div class="gejala">
+<input type="checkbox" id="g1">
+<label for="g1">Demam</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g2">
+<label for="g2">Batuk</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g3">
+<label for="g3">Pilek</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g4">
+<label for="g4">Sakit Tenggorokan</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g5">
+<label for="g5">Sesak Napas</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g6">
+<label for="g6">Kehilangan Penciuman</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g7">
+<label for="g7">Mual</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g8">
+<label for="g8">Muntah</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g9">
+<label for="g9">Diare</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g10">
+<label for="g10">Nyeri Kepala</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g11">
+<label for="g11">Nyeri Sendi</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g12">
+<label for="g12">Menggigil</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g13">
+<label for="g13">Berkeringat</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g14">
+<label for="g14">Nafsu Makan Menurun</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g15">
+<label for="g15">Mata Merah</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g16">
+<label for="g16">Ruam Kulit</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g17">
+<label for="g17">Nyeri Dada</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g18">
+<label for="g18">Sulit Tidur</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g19">
+<label for="g19">Lemas</label>
+</div>
+
+<div class="gejala">
+<input type="checkbox" id="g20">
+<label for="g20">Sakit Perut</label>
+</div>
+
+</div>
+
+<button
+type="button"
+onclick="diagnosa()">
+
+<i class="fas fa-search"></i>
+
+Diagnosa Sekarang
+
+</button>
+
+</form>
+
+<div id="hasil" class="hasil">
+
+<h3>Hasil Diagnosa</h3>
+
+<p>Silakan pilih gejala kemudian klik tombol <b>Diagnosa Sekarang</b>.</p>
+
+</div>
+
+<footer>
+
+Copyright © 2026 |
+Sistem Pakar Kesehatan Berbasis Backward Chaining |
+Muhammad Jefri
+
+</footer>
+
+</div>
+
+<script src="diagnosa.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Riwayat Diagnosa</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<h2><i class="fas fa-heartbeat"></i> E-Health</h2>
+
+<ul>
+
+<li>
+<a href="index.html">
+<i class="fas fa-home"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="pasien.html">
+<i class="fas fa-user"></i>
+Data Pasien
+</a>
+</li>
+
+<li>
+<a href="diagnosa.html">
+<i class="fas fa-stethoscope"></i>
+Diagnosa
+</a>
+</li>
+
+<li>
+<a href="penyakit.html">
+<i class="fas fa-book-medical"></i>
+Data Penyakit
+</a>
+</li>
+
+<li class="active">
+<a href="riwayat.html">
+<i class="fas fa-history"></i>
+Riwayat
+</a>
+</li>
+
+<li>
+<a href="tentang.html">
+<i class="fas fa-info-circle"></i>
+Tentang
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="header">
+
+<h1>
+
+<i class="fas fa-history"></i>
+
+Riwayat Diagnosa
+
+</h1>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>No</th>
+
+<th>Nama Pasien</th>
+
+<th>Penyakit</th>
+
+<th>Tanggal</th>
+
+</tr>
+
+</thead>
+
+<tbody id="isiRiwayat">
+
+</tbody>
+
+</table>
+
+<br>
+
+<button onclick="window.print()">
+
+<i class="fas fa-print"></i>
+
+Cetak
+
+</button>
+
+<button onclick="hapusRiwayat()">
+
+<i class="fas fa-trash"></i>
+
+Hapus Riwayat
+
+</button>
+
+<footer>
+
+Copyright © 2026 |
+Sistem Pakar Kesehatan |
+Backward Chaining |
+Muhammad Jefri
+
+</footer>
+
+</div>
+
+<script>
+
+let data = JSON.parse(localStorage.getItem("diagnosa")) || [];
+
+let isi = "";
+
+if(data.length==0){
+
+isi = `
+<tr>
+
+<td colspan="4" style="text-align:center">
+
+Belum ada riwayat diagnosa.
+
+</td>
+
+</tr>
+`;
+
+}
+
+else{
+
+data.forEach((d,index)=>{
+
+isi += `
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${d.nama}</td>
+
+<td>${d.penyakit}</td>
+
+<td>${d.tanggal}</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+document.getElementById("isiRiwayat").innerHTML = isi;
+
+function hapusRiwayat(){
+
+if(confirm("Apakah Anda yakin ingin menghapus semua riwayat diagnosa?")){
+
+localStorage.removeItem("diagnosa");
+
+location.reload();
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
